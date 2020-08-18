@@ -1,3 +1,12 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": 1,
+      "title": "Wohnung mieten"
+    },
+    {
+      "id": 2,
+      "title": "Geld verdienen"
+    }
+  ]
 }
