@@ -7,6 +7,16 @@
     {
       "id": 2,
       "title": "Geld verdienen"
+    },
+    {
+      "title": "Geh mal Bier holen",
+      "author": "Marwin",
+      "id": 3
+    },
+    {
+      "title": "Wäsche Waschen",
+      "author": "Marwin",
+      "id": 4
     }
   ]
 }
