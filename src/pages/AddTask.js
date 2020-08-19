@@ -5,6 +5,7 @@ import { postTodo } from "../api/todos";
 function AddTask() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -16,14 +17,18 @@ function AddTask() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    setLoading(true);
     const todo = {
       title,
       author,
       createdAt: Date.now(),
     };
     await postTodo(todo);
+
     setTitle("");
     setAuthor("");
+    setLoading(false);
   }
 
   return (
@@ -37,7 +42,11 @@ function AddTask() {
           Author:
           <input value={author} onChange={handleAuthorChange} />
         </label>
-        <input type="submit" value="Add task" disabled={!title || !author} />
+        <input
+          type="submit"
+          value="Add task"
+          disabled={!title || !author || loading}
+        />
       </form>
       <Link to="/">Tasks</Link>
     </>
