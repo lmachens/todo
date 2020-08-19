@@ -6,6 +6,7 @@ function AddTask() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -19,16 +20,22 @@ function AddTask() {
     event.preventDefault();
 
     setLoading(true);
+    setError(false);
     const todo = {
       title,
       author,
       createdAt: Date.now(),
     };
-    await postTodo(todo);
-
-    setTitle("");
-    setAuthor("");
-    setLoading(false);
+    try {
+      await postTodo(todo);
+      setTitle("");
+      setAuthor("");
+    } catch (error) {
+      console.error(error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -47,6 +54,7 @@ function AddTask() {
           value="Add task"
           disabled={!title || !author || loading}
         />
+        {error && <p>Something bad happened 🤣. Please try again.</p>}
       </form>
       <Link to="/">Tasks</Link>
     </>
