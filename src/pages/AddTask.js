@@ -16,10 +16,12 @@ function AddTask() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    await postTodo({
+    const todo = {
       title,
       author,
-    });
+      createdAt: Date.now(),
+    };
+    await postTodo(todo);
     setTitle("");
     setAuthor("");
   }
