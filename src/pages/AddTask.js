@@ -37,7 +37,7 @@ function AddTask() {
           Author:
           <input value={author} onChange={handleAuthorChange} />
         </label>
-        <input type="submit" value="Add task" />
+        <input type="submit" value="Add task" disabled={!title || !author} />
       </form>
       <Link to="/">Tasks</Link>
     </>
